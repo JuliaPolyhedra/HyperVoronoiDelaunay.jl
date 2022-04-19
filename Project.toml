@@ -11,6 +11,7 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 VoronoiDelaunay = "72f80fcb-8c52-57d9-aff0-40c1a3526986"
 
 [compat]
+MiniQhull = "0.3"
 Polyhedra = "0.7"
 
 [extras]

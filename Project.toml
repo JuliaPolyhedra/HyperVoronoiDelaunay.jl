@@ -13,6 +13,7 @@ VoronoiDelaunay = "72f80fcb-8c52-57d9-aff0-40c1a3526986"
 [compat]
 MiniQhull = "0.3"
 Polyhedra = "0.7"
+VoronoiDelaunay = "0.4"
 
 [extras]
 CDDLib = "3391f64e-dcde-5f30-b752-e11513730f60"

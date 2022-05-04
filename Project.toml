@@ -19,6 +19,7 @@ VoronoiDelaunay = "0.4"
 [extras]
 CDDLib = "3391f64e-dcde-5f30-b752-e11513730f60"
 QHull = "a8468747-bd6f-53ef-9e5c-744dbc5c59e7"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["CDDLib", "QHull", "Test"]

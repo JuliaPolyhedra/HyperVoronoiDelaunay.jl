@@ -1,4 +1,7 @@
 # Taken from blegat/VoroX.jl
+include("NN.jl")
+
+using LinearAlgebra
 
 # Sample Set of Points in Region
 function random_points(K::Int, a::SVector, b::SVector, algo = NN.GridTree; maxtries = 10K)

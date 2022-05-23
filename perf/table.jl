@@ -21,7 +21,7 @@ end
 
 function prettyprint(bs, ns)
     print_row(' ', "", ns)
-    print_row(' ', "", fill("", length(ns)))
+    print_row('-', "", fill("", length(ns)))
     for b in bs
         _prettyprint(b[1], b[2])
     end

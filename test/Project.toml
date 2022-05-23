@@ -1,6 +1,8 @@
 [deps]
 CDDLib = "3391f64e-dcde-5f30-b752-e11513730f60"
-HyperVoronoiDelaunay = "1a55de6a-d783-4007-8775-0d59a3e033cc"
 MiniQhull = "978d7f02-9e05-4691-894f-ae31a51d76ca"
+NearestNeighbors = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
 QHull = "a8468747-bd6f-53ef-9e5c-744dbc5c59e7"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 VoronoiDelaunay = "72f80fcb-8c52-57d9-aff0-40c1a3526986"

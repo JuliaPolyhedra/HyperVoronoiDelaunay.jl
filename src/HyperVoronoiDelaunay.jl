@@ -95,6 +95,13 @@ function delaunay(points::Vector{SVector{N,T}}, algo::typeof(MiniQhull.delaunay)
     return MiniQhull.delaunay(points)
 end
 
+import CGAL
+function delaunay(points::Vector{SVector{N,T}}, algo::Type{<:CGAL.Triangulation}, ::NonPeriodic) where {N,T}
+    insert(CGAL.Triangulation(), CGAL.Point.(points))
+    simplices = Matrix{Int}(undef, N+1, length(Δs))
+    return simplices
+end
+
 function shift_point(point::SVector{N,T}, shift::NTuple{N,Int}, period::SVector{N,T}) where {N,T}
     return point .+ shift .* period
 end

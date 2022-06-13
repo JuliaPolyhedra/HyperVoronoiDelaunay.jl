@@ -96,9 +96,17 @@ function delaunay(points::Vector{SVector{N,T}}, algo::typeof(MiniQhull.delaunay)
 end
 
 import CGAL
-function delaunay(points::Vector{SVector{N,T}}, algo::Type{<:CGAL.Triangulation}, ::NonPeriodic) where {N,T}
-    insert(CGAL.Triangulation(), CGAL.Point.(points))
-    simplices = Matrix{Int}(undef, N+1, length(Δs))
+function delaunay(points::Vector{SVector{N,T}}, algo::Type{CGAL.DelaunayTriangulation2}, ::NonPeriodic) where {N,T}
+    cgal_points = [CGAL.Point2(point...) for point in points]
+    index = Dict(point => index for (index, point) in enumerate(cgal_points))
+    t = CGAL.DelaunayTriangulation2(cgal_points)
+    fs = CGAL.faces(t)
+    simplices = Matrix{Int}(undef, N+1, length(fs))
+    for (i, f) in enumerate(fs)
+        for j in 1:(N+1)
+            simplices[i, j] = index[CGAL.point(CGAL.vertex(f, j))]
+        end
+    end
     return simplices
 end
 

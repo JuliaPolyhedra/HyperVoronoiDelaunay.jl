@@ -17,7 +17,7 @@ end
 
 function test_grid_0(lib)
     simplices = _test_grid(0, lib)
-    @show size(simplices)
+    @test size(simplices) == (3, 0)
 end
 
 function test_grid_1(lib)

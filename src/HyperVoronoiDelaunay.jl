@@ -99,13 +99,15 @@ import CGAL
 function delaunay(points::Vector{SVector{N,T}}, algo::Type{CGAL.DelaunayTriangulation2}, ::NonPeriodic) where {N,T}
     cgal_points = [CGAL.Point2(point...) for point in points]
     # FIXME is there an easier way to get the index and not the coordinate from CGAL ?
-    index = Dict(point => index for (index, point) in enumerate(cgal_points))
+    index = Dict(point => index for (index, point) in enumerate(points))
     t = CGAL.DelaunayTriangulation2(cgal_points)
     fs = CGAL.faces(t)
     simplices = Matrix{Int}(undef, N+1, length(fs))
     for (i, f) in enumerate(fs)
         for j in 1:(N+1)
-            simplices[i, j] = index[CGAL.point(CGAL.vertex(f, j))]
+            cgal_v = CGAL.point(CGAL.vertex(f, j))
+            v = SVector{N,T}(CGAL.x(cgal_v), CGAL.y(cgal_v))
+            simplices[j, i] = index[v]
         end
     end
     return simplices

@@ -1,6 +1,7 @@
 [deps]
 CDDLib = "3391f64e-dcde-5f30-b752-e11513730f60"
 CGAL = "15fcbb24-5a00-427b-98c5-e32879a22884"
+HyperVoronoiDelaunay = "1a55de6a-d783-4007-8775-0d59a3e033cc"
 MiniQhull = "978d7f02-9e05-4691-894f-ae31a51d76ca"
 NearestNeighbors = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
 QHull = "a8468747-bd6f-53ef-9e5c-744dbc5c59e7"

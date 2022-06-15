@@ -6,6 +6,7 @@ import CDDLib
 import QHull
 import VoronoiDelaunay
 import MiniQhull
+import CGAL
 
 using HyperVoronoiDelaunay
 
@@ -16,7 +17,7 @@ end
 
 function test_grid_0(lib)
     simplices = _test_grid(0, lib)
-    @show size(simplices)
+    @test size(simplices) == (3, 0)
 end
 
 function test_grid_1(lib)
@@ -65,7 +66,7 @@ function test_periodic(algo)
     @test hascol(d, [[10, 13, 14], [13, 16, 17]])
 end
 
-LIBRARIES = [MiniQhull.delaunay, QHull.Library(), CDDLib.Library(:float), VoronoiDelaunay.DelaunayTessellation2D]
+LIBRARIES = [MiniQhull.delaunay, QHull.Library(), CDDLib.Library(:float), VoronoiDelaunay.DelaunayTessellation2D, CGAL.DelaunayTriangulation2]
 
 @testset "Test issue 55 $lib" for lib in LIBRARIES
     if lib != VoronoiDelaunay.DelaunayTessellation2D

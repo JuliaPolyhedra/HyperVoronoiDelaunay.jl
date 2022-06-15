@@ -66,15 +66,30 @@ function test_periodic(algo)
     @test hascol(d, [[10, 13, 14], [13, 16, 17]])
 end
 
-LIBRARIES = [MiniQhull.delaunay, QHull.Library(), CDDLib.Library(:float), VoronoiDelaunay.DelaunayTessellation2D, CGAL.DelaunayTriangulation2]
+function test_3D(lib)
+    points = [
+        SVector(0.0, 0.0, 0.0),
+        SVector(1.0, 0.0, 0.0),
+        SVector(0.0, 1.0, 0.0),
+        SVector(0.0, 0.0, 1.0),
+        SVector(3/4, 3/4, 1.0),
+    ]
+    simplices = delaunay(points, lib, NonPeriodic())
+    @test size(simplices) == (4, 3)
+    @test hascol(simplices, [[1, 2, 4, 5]])
+    @test hascol(simplices, [[1, 3, 4, 5]])
+    @test hascol(simplices, [[1, 2, 3, 5]])
+end
 
-@testset "Test issue 55 $lib" for lib in LIBRARIES
+LIBRARIES_2D = [MiniQhull.delaunay, QHull.Library(), CDDLib.Library(:float), VoronoiDelaunay.DelaunayTessellation2D, CGAL.DelaunayTriangulation2]
+
+@testset "Test issue 55 $lib" for lib in LIBRARIES_2D
     if lib != VoronoiDelaunay.DelaunayTessellation2D
         test_issue_55(lib)
     end
 end
 
-@testset "Grid $lib" for lib in LIBRARIES
+@testset "Grid $lib" for lib in LIBRARIES_2D
     @testset "0" begin
         if lib != VoronoiDelaunay.DelaunayTessellation2D && !isa(lib, QHull.Library) && lib != MiniQhull.delaunay
             test_grid_0(lib)
@@ -85,6 +100,12 @@ end
     end
 end
 
-@testset "periodic" for lib in LIBRARIES
+@testset "periodic $lib" for lib in LIBRARIES_2D
     test_periodic(lib)
+end
+
+LIBRARIES_3D = [MiniQhull.delaunay, QHull.Library(), CDDLib.Library(:float)]
+
+@testset "Test 3D $lib" for lib in LIBRARIES_3D
+    test_3D(lib)
 end

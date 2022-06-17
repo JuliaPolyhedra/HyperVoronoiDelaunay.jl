@@ -104,7 +104,7 @@ end
     test_periodic(lib)
 end
 
-LIBRARIES_3D = [MiniQhull.delaunay, QHull.Library(), CDDLib.Library(:float)]
+LIBRARIES_3D = [CGAL.DelaunayTriangulation3, MiniQhull.delaunay, QHull.Library(), CDDLib.Library(:float)]
 
 @testset "Test 3D $lib" for lib in LIBRARIES_3D
     test_3D(lib)

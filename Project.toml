@@ -17,6 +17,7 @@ MiniQhull = "0.3"
 Polyhedra = "0.7"
 StaticArrays = "1"
 VoronoiDelaunay = "0.4"
+julia = "1.6"
 
 [extras]
 CDDLib = "3391f64e-dcde-5f30-b752-e11513730f60"
